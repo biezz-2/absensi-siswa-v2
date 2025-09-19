@@ -1,95 +1,128 @@
-# Absensi Siswa V2
+# <div align='center'>Sistem Absensi Siswa – Berbasis Web</div>
 
-![Absensi Siswa V2](https://media.giphy.com/media/3o7TKSjRrfIPjeI6pa/giphy.gif)
+<div align='center'>
 
+![School Management System](https://files.cloudkuimages.guru/images/HFiLkuUz.jpg)
+
+<!-- Project & Social Badges -->
 <p align="center">
-  <img src="https://img.shields.io/badge/PHP-8.2-blue?style=for-the-badge&logo=php" alt="PHP 8.2">
-  <img src="https://img.shields.io/badge/Laravel-10-orange?style=for-the-badge&logo=laravel" alt="Laravel 10">
-  <img src="https://img.shields.io/badge/MySQL-8.0-blue?style=for-the-badge&logo=mysql" alt="MySQL 8.0">
-  <img src="https://img.shields.io/badge/TailwindCSS-3-blue?style=for-the-badge&logo=tailwind-css" alt="TailwindCSS 3">
+  <!-- License -->
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-0A66C2?style=for-the-badge&logo=mit&logoColor=white" alt="License"/>
+  </a>
+  
+  <!-- PHP Version -->
+  <a href="https://www.php.net/">
+    <img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP"/>
+  </a>
+
+  <!-- Laravel Version -->
+  <a href="https://laravel.com/">
+    <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel"/>
+  </a>
+  
+  <!-- SQLite -->
+  <a href="https://www.sqlite.org/index.html">
+    <img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+  </a>
+
+  <!-- Tailwind CSS -->
+  <a href="https://tailwindcss.com/">
+    <img src="https://img.shields.io/badge/Tailwind%20CSS-Styling-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
+  </a>
+
+  <!-- Gemini AI -->
+  <a href="https://gemini.google.com/">
+    <img src="https://img.shields.io/badge/Gemini-AI%20Powered-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini AI"/>
+  </a>
+
+  <!-- GitHub Repository -->
+  <a href="https://github.com/biezz-2/absensi-siswa-v2">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository"/>
+  </a>
 </p>
 
-Aplikasi Absensi Siswa V2 adalah sebuah sistem informasi absensi siswa berbasis web yang dibangun menggunakan framework Laravel 10. Aplikasi ini memudahkan guru untuk mencatat kehadiran siswa dan merekap data absensi.
+</div>
 
-## ✨ Fitur
+## 📋 Daftar Isi
 
-*   **Manajemen Data Master**:
-    *   Kelola data siswa
-    *   Kelola data guru
-    *   Kelola data kelas
-    *   Kelola data mata pelajaran
-*   **Manajemen Absensi**:
-    *   Guru dapat membuat sesi absensi harian untuk setiap mata pelajaran di kelas yang diajar.
-    *   Siswa dapat melihat riwayat absensi mereka.
-    *   Admin dapat melihat rekap absensi semua siswa.
-*   **Laporan**:
-    *   Cetak laporan absensi dalam format PDF dan Excel.
-*   **Notifikasi WhatsApp**:
-    *   Notifikasi absensi kepada orang tua/wali siswa melalui WhatsApp.
-*   **Integrasi Gemini API**:
-    *   Fitur tambahan yang terintegrasi dengan Google Gemini API.
+| No. | Bagian |
+|-----|---------|
+| 1. | [![Deskripsi](https://img.shields.io/badge/📖-Deskripsi-blue?style=for-the-badge)](#-sistem-absensi-siswa)
+| 2. | [![Fitur Utama](https://img.shields.io/badge/📂-Fitur_Utama-green?style=for-the-badge)](#-fitur-utama)
+| 3. | [![Detail Teknis](https://img.shields.io/badge/⚙️-Detail_Teknis-purple?style=for-the-badge)](#-detail-teknis)
+| 4. | [![Struktur Proyek](https://img.shields.io/badge/🧱-Struktur-yellow?style=for-the-badge)](#-struktur-proyek)
+| 5. | [![Lisensi](https://img.shields.io/badge/📜-Lisensi-0A66C2?style=for-the-badge)](#-lisensi)
 
-## 🚀 Instalasi
+---
 
-1.  **Clone repository**
-    ```bash
-    git clone https://github.com/biezz-2/absensi-siswa-v2.git
-    ```
-2.  **Masuk ke direktori project**
-    ```bash
-    cd absensi-siswa-v2
-    ```
-3.  **Install dependency**
-    ```bash
-    composer install
-    npm install
-    ```
-4.  **Buat file `.env`**
-    ```bash
-    cp .env.example .env
-    ```
-5.  **Generate application key**
-    ```bash
-    php artisan key:generate
-    ```
-6.  **Konfigurasi database**
-    Buka file `.env` dan sesuaikan konfigurasi database Anda.
-    ```
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=absensi_siswa_v2
-    DB_USERNAME=root
-    DB_PASSWORD=
-    ```
-7.  **Jalankan migrasi dan seeder**
-    ```bash
-    php artisan migrate --seed
-    ```
-8.  **Jalankan aplikasi**
-    ```bash
-    php artisan serve
-    npm run dev
-    ```
+# ✨ Sistem Absensi Siswa
 
-## 👨‍💻 Penggunaan
+⚡ **Cepat. Cerdas. Terintegrasi.**  
+🌍 **Open-Source. Fleksibel. Mudah Digunakan.**  
+🔧 **Kode Bersih. Mudah Dikembangkan. Didukung AI.**
 
-Setelah aplikasi berjalan, Anda dapat mengaksesnya di `http://localhost:8000`.
+**Sistem Absensi Siswa** adalah aplikasi web yang dirancang untuk memodernisasi dan menyederhanakan proses pencatatan kehadiran di sekolah. Aplikasi ini dibangun untuk membantu admin, guru, dan siswa dalam mengelola data absensi secara efisien dan transparan.
 
-*   **Login sebagai Admin**:
-    *   Email: `admin@example.com`
-    *   Password: `password`
-*   **Login sebagai Guru**:
-    *   Email: `teacher@example.com`
-    *   Password: `password`
-*   **Login sebagai Siswa**:
-    *   Email: `student@example.com`
-    *   Password: `password`
+Dengan arsitektur yang solid dan fitur-fitur cerdas, aplikasi ini bertujuan untuk menjadi:
+- 🚀 **Ringan & Cepat** → Dioptimalkan untuk kecepatan dan stabilitas.
+- 🧩 **Modular & Mudah Dikembangkan** → Tambah atau ubah fitur dengan mudah.
+- 🤖 **Didukung AI** → Terintegrasi dengan Google Gemini untuk analisis data cerdas.
+- 💡 **Ramah Pengguna** → Antarmuka yang bersih dan mudah dipahami untuk setiap peran (admin, guru, siswa).
 
-## 🤝 Kontribusi
+## 📂 Fitur Utama
 
-Kontribusi sangat diterima. Silakan buat *pull request* atau buka *issue* untuk berdiskusi mengenai perubahan yang ingin Anda buat.
+### Untuk Admin
+- 👤 **Manajemen Pengguna** — Mengelola akun untuk admin, guru, dan siswa.
+- 🏫 **Manajemen Kelas & Mata Pelajaran** — Membuat kelas, mata pelajaran, dan menugaskan guru.
+- 📊 **Dasbor Analitik** — Memantau statistik kehadiran seluruh sekolah dalam tren mingguan.
+- 🤖 **AI Assistant** — Menambahkan data (seperti guru baru dan tugas mengajarnya) hanya dengan mengetikkan perintah dalam bahasa alami.
+- 📄 **Persetujuan Izin** — Meninjau dan menyetujui pengajuan izin tidak masuk dari siswa dengan bantuan kategori dari AI.
 
-## 📄 Lisensi
+### Untuk Guru
+- 📈 **Dasbor Guru** — Melihat statistik kelas, jadwal mengajar, dan ringkasan kehadiran harian.
+- 📱 **Absensi Kode QR** — Membuat kode QR unik untuk setiap sesi kelas agar siswa dapat melakukan absensi dengan memindainya.
+- 📝 **Manajemen Kehadiran** — Mengelola data kehadiran secara manual (menambah, mengedit, menghapus) jika diperlukan.
+- 📊 **Laporan & Ekspor** — Mengekspor data kehadiran kelas ke dalam format Microsoft Excel.
+- 💡 **Wawasan Performa Siswa** — Mendapatkan analisis singkat dari AI mengenai pola kehadiran siswa.
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+### Untuk Siswa
+- 🏠 **Dasbor Siswa** — Melihat jadwal pelajaran harian dan rekap absensi pribadi.
+- 📲 **Absensi via Pindai QR** — Melakukan absensi dengan cepat dan mudah dengan memindai kode QR yang ditampilkan oleh guru.
+- 📬 **Pengajuan Izin** — Mengirimkan permohonan izin tidak masuk beserta dokumen pendukung.
+
+## ⚙️ Detail Teknis
+
+| Info            | Nilai                              |
+|-----------------|------------------------------------|
+| Nama Proyek     | `Sistem Absensi Siswa v2`            |
+| Kerangka Kerja  | `Laravel 12`                       |
+| Bahasa          | `PHP 8.3`                          |
+| Database        | `SQLite`                           |
+| Frontend        | `Tailwind CSS`, `Blade`            |
+| AI              | `Google Gemini API`                |
+| Lisensi         | MIT License                        |
+
+## 🧱 Struktur Proyek
+
+Struktur direktori utama dari proyek ini:
+
+| Lokasi / File         | Deskripsi |
+|-----------------------|-------------|
+| `app/`                | Logika inti aplikasi, termasuk Model, Controller, dan Policy. |
+| `app/Http/Controllers/` | Berisi Controller untuk setiap peran (Admin, Teacher, Student). |
+| `app/Models/`         | Model Eloquent yang merepresentasikan tabel database. |
+| `app/Services/`       | Berisi `GeminiService` untuk interaksi dengan AI. |
+| `config/`             | File konfigurasi untuk aplikasi, database, dan layanan lainnya. |
+| `database/`           | Berisi file migrasi, seeder, dan factory. |
+| `public/`             | *Document root* untuk aplikasi web. |
+| `resources/views/`    | Berisi file-file Blade untuk antarmuka pengguna (UI). |
+| `routes/`             | Definisi rute untuk web dan API. |
+| `.env`                | File konfigurasi lingkungan (kunci API, koneksi database, dll). |
+| `composer.json`       | Daftar dependensi PHP. |
+| `package.json`        | Daftar dependensi JavaScript. |
+| `README.md`           | Dokumentasi proyek ini. |
+
+## 📜 Lisensi
+
+Proyek ini dilisensikan di bawah **MIT License** — lihat file [LICENSE](LICENSE) untuk detailnya.
