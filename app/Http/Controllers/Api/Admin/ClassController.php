@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
 use App\Http\Resources\SchoolClassResource;
 use App\Models\SchoolClass;
 use Illuminate\Http\Request;

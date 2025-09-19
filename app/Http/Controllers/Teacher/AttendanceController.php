@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
+use App\Models\Attendance;
+use App\Models\SchoolClass;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Exports\TeacherAttendanceExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\SchoolClass;
-use App\Models\Subject;
-use App\Models\Attendance;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use chillerlan\QRCode\QRCode;
+use Illuminate\Support\Facades\URL;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $teacherId = Auth::user()->teacher->id;
 
@@ -25,7 +29,55 @@ class AttendanceController extends Controller
             ->select('classes.id as class_id', 'classes.name as class_name', 'subjects.id as subject_id', 'subjects.name as subject_name')
             ->get();
 
-        return view('teacher.attendance.index', compact('schedules'));
+        $attendances = null;
+        if ($request->has('class_id') && $request->has('subject_id') && $request->has('date')) {
+            $attendances = Attendance::where('school_class_id', $request->class_id)
+                ->where('subject_id', $request->subject_id)
+                ->where('date', $request->date)
+                ->with('student.user')
+                ->get();
+        }
+
+        return view('teacher.attendance.index', compact('schedules', 'attendances'));
+    }
+
+    public function generateQrCode($school_class_id, $subject_id)
+    {
+        $url = URL::temporarySignedRoute(
+            'student.attendance.scan',
+            now()->addMinutes(5),
+            [
+                'school_class_id' => $school_class_id,
+                'subject_id' => $subject_id,
+                'teacher_id' => Auth::user()->teacher->id,
+            ]
+        );
+
+        $qrCode = (new QRCode)->render($url);
+
+        return view('teacher.attendance.qrcode', compact('qrCode'));
+    }
+
+    public function edit(Attendance $attendance)
+    {
+        return view('teacher.attendance.edit', compact('attendance'));
+    }
+
+    public function update(Request $request, Attendance $attendance)
+    {
+        $request->validate([
+            'status' => ['required', 'in:present,sick,permit,absent'],
+        ]);
+
+        $attendance->update(['status' => $request->status]);
+
+        return redirect()->route('teacher.attendance.index')->with('success', 'Attendance updated successfully.');
+    }
+
+    public function destroy(Attendance $attendance)
+    {
+        $attendance->delete();
+        return back()->with('success', 'Attendance record deleted successfully.');
     }
 
     public function store(Request $request)
@@ -55,5 +107,10 @@ class AttendanceController extends Controller
         }
 
         return back()->with('success', 'Attendance saved successfully!');
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new TeacherAttendanceExport($request->all()), 'attendance.xlsx');
     }
 }

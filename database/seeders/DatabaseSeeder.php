@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             ClassSubjectSeeder::class,
             AbsenceSubmissionSeeder::class,
+            DemoUserSeeder::class,
         ]);
     }
 }

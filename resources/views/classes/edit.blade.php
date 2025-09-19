@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ Auth::user()->role->name === 'admin' ? route('admin.classes.update', $class) : route('teacher.classes.update', $class) }}" method="POST">
+                    <form action="{{ Auth::user()->role->name === 'admin' ? route('admin.classes.update', ['class' => $class->id]) : route('teacher.classes.update', ['class' => $class->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-4">

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -26,7 +24,7 @@ class NicknameController extends Controller
         $prompt = "Berikan 3 saran nama panggilan yang unik dan singkat berdasarkan nama lengkap ini: \"{$fullName}\". Kembalikan hanya sebagai array JSON berisi string. Contoh: [\"Alex\", \"Lex\", \"Xander\"]";
         
         $payload = [
-            'contents' => [['parts' => [['text' => $prompt]]]],
+            'contents' => [['parts' => [['text' => $prompt]]]] ,
             'generationConfig' => [
                 'responseMimeType' => "application/json",
             ]
@@ -45,7 +43,8 @@ class NicknameController extends Controller
 
             return response()->json(['suggestions' => json_decode($suggestions)]);
 
-        } catch (\Exception $e) {
+        } catch (
+Exception $e) {
             Log::error('Exception calling Gemini API', ['message' => $e->getMessage()]);
             return response()->json(['error' => 'An unexpected error occurred.'], 500);
         }

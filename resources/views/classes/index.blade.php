@@ -26,7 +26,7 @@
                                     Homeroom Teacher
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="sr-only">Actions</span>
                                 </th>
                             </tr>
                         </thead>
@@ -40,8 +40,9 @@
                                         {{ $class->homeroomTeacher->user->name ?? 'N/A' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{{ route('admin.classes.subjects.index', $class) }}" class="text-green-600 hover:text-green-900">Manage Subjects</a>
                                         @can('update', $class)
-                                            <a href="{{ Auth::user()->role->name === 'admin' ? route('admin.classes.edit', $class) : route('teacher.classes.edit', $class) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <a href="{{ Auth::user()->role->name === 'admin' ? route('admin.classes.edit', $class) : route('teacher.classes.edit', $class) }}" class="text-indigo-600 hover:text-indigo-900 ml-2">Edit</a>
                                         @endcan
                                         @can('delete', $class)
                                         <form action="{{ route('admin.classes.destroy', $class) }}" method="POST" class="inline-block ml-2">

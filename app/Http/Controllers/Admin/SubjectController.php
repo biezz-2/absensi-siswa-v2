@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -23,8 +21,8 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['name' => ['required', 'string', 'max:255', 'unique:subjects']]);
-        Subject::create($request->all());
+        $validated = $request->validate(['name' => ['required', 'string', 'max:255', 'unique:subjects']]);
+        Subject::create($validated);
         return redirect()->route('admin.subjects.index')->with('success', 'Subject created successfully.');
     }
 
@@ -40,8 +38,8 @@ class SubjectController extends Controller
 
     public function update(Request $request, Subject $subject)
     {
-        $request->validate(['name' => ['required', 'string', 'max:255', \Illuminate\Validation\Rule::unique('subjects')->ignore($subject->id)]]);
-        $subject->update($request->all());
+        $validated = $request->validate(['name' => ['required', 'string', 'max:255', \Illuminate\Validation\Rule::unique('subjects')->ignore($subject->id)]]);
+        $subject->update($validated);
         return redirect()->route('admin.subjects.index')->with('success', 'Subject updated successfully.');
     }
 

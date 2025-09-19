@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Exports\AttendanceExport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller

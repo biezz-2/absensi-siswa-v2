@@ -10,17 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class SchoolClassController extends Controller
 {
     use AuthorizesRequests;
-    public function __construct()
-    {
-        // This automatically authorizes all resource methods against the SchoolClassPolicy
-        $this->authorizeResource(SchoolClass::class, 'school_class');
-    }
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('viewAny', SchoolClass::class);
         $user = Auth::user();
         $query = SchoolClass::with('homeroomTeacher.user');
 
@@ -39,6 +35,7 @@ class SchoolClassController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', SchoolClass::class);
         $teachers = \App\Models\Teacher::with('user')->get();
         return view('classes.create', compact('teachers'));
     }
@@ -48,6 +45,7 @@ class SchoolClassController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', SchoolClass::class);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'teacher_id' => ['nullable', 'exists:teachers,id'],
@@ -63,14 +61,17 @@ class SchoolClassController extends Controller
      */
     public function show(SchoolClass $schoolClass)
     {
+        $this->authorize('view', $schoolClass);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SchoolClass $schoolClass)
+    public function edit($class)
     {
+        $schoolClass = SchoolClass::findOrFail($class);
+        $this->authorize('update', $schoolClass);
         $teachers = \App\Models\Teacher::with('user')->get();
         return view('classes.edit', ['class' => $schoolClass, 'teachers' => $teachers]);
     }
@@ -80,6 +81,7 @@ class SchoolClassController extends Controller
      */
     public function update(Request $request, SchoolClass $schoolClass)
     {
+        $this->authorize('update', $schoolClass);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'teacher_id' => ['nullable', 'exists:teachers,id'],
@@ -97,6 +99,7 @@ class SchoolClassController extends Controller
      */
     public function destroy(SchoolClass $schoolClass)
     {
+        $this->authorize('delete', $schoolClass);
         $schoolClass->delete();
 
         return redirect()->route('admin.classes.index')->with('success', 'Class deleted successfully.');

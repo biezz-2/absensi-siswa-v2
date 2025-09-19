@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Controllers\Controller;
 use App\Models\AbsenceSubmission;
+use App\Services\GeminiService;
 use Illuminate\Http\Request;
 
 class AbsenceSubmissionController extends Controller
 {
+    protected $geminiService;
+
+    public function __construct(GeminiService $geminiService)
+    {
+        $this->geminiService = $geminiService;
+    }
+
     public function index()
     {
         $submissions = AbsenceSubmission::with('student.user')->latest()->paginate(15);
@@ -25,5 +31,13 @@ class AbsenceSubmissionController extends Controller
         // Here you would typically trigger a notification to the student.
 
         return back()->with('success', 'Submission status updated successfully.');
+    }
+
+    public function summarize(Request $request)
+    {
+        $submissions = AbsenceSubmission::whereIn('id', $request->submission_ids)->get();
+        $summary = $this->geminiService->summarizeAbsenceSubmissions($submissions->toArray());
+
+        return response()->json(['summary' => $summary]);
     }
 }
