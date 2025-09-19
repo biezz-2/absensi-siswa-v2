@@ -2,7 +2,7 @@
 
 <div align='center'>
 
-![School Management System](https://files.cloudkuimages.guru/images/HFiLkuUz.jpg)
+![School Management System](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF7npYKWjfX8GW9ArtmGdG-LXNdK7876WDfg&s)
 
 <!-- Project & Social Badges -->
 <p align="center">
