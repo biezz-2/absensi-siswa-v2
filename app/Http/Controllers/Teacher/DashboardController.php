@@ -10,9 +10,17 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Services\GeminiService;
 
 class DashboardController extends Controller
 {
+    protected $geminiService;
+
+    public function __construct(GeminiService $geminiService)
+    {
+        $this->geminiService = $geminiService;
+    }
+
     public function index()
     {
         $teacherId = Auth::user()->teacher->id;
@@ -72,11 +80,11 @@ class DashboardController extends Controller
         $studentPerformance = $this->getStudentPerformance($teacherId);
 
         return view('teacher.dashboard', compact(
-            'schedules', 
-            'attendanceSummary', 
-            'weeklyTrend', 
-            'recentSubmissions', 
-            'dailyAttendanceChart', 
+            'schedules',
+            'attendanceSummary',
+            'weeklyTrend',
+            'recentSubmissions',
+            'dailyAttendanceChart',
             'teacherStats',
             'studentPerformance'
         ));
@@ -147,7 +155,7 @@ class DashboardController extends Controller
         $students = Student::whereHas('schoolClass.subjects', function ($query) use ($teacherId) {
             $query->where('teacher_id', $teacherId);
         })
-        ->with(['user', 'attendances']) // Eager load attendances
+        ->with(['user', 'attendances'])
         ->get();
 
         $mostAbsences = $students->sortByDesc(function ($student) {
@@ -158,9 +166,19 @@ class DashboardController extends Controller
             return $student->attendances->where('status', '!= ', 'present')->count() == 0;
         })->take(5);
 
+        $formattedStudents = $students->map(function ($student) {
+            return [
+                'user' => ['name' => $student->user->name],
+                'attendances_count' => $student->attendances->where('status', 'absent')->count(),
+            ];
+        })->toArray();
+
+        $aiInsights = $this->geminiService->getStudentPerformanceInsights($formattedStudents);
+
         return [
             'most_absences' => $mostAbsences,
             'perfect_attendance' => $perfectAttendance,
+            'ai_insights' => $aiInsights,
         ];
     }
 }

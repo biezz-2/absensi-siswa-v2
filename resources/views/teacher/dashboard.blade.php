@@ -75,6 +75,13 @@
                                     </ul>
                                 </div>
                             </div>
+                            {{-- AI Insights --}}
+                            @if ($studentPerformance['ai_insights'])
+                                <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h4 class="font-semibold mb-2 text-blue-800">AI Insights on Student Performance</h4>
+                                    <p class="text-sm text-blue-700">{{ $studentPerformance['ai_insights'] }}</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

@@ -29,7 +29,7 @@ class SchoolClassPolicy
 
     public function create(User $user): bool
     {
-        return $user->role->name === 'admin';
+        return $user->role->name === 'admin' || $user->role->name === 'guru';
     }
 
     public function update(User $user, SchoolClass $schoolClass): bool
